@@ -25,6 +25,7 @@ import {OnboardingImage} from '../components/Containers';
 import OnboardingSlide from '../components/OnboardingSlide';
 import ScrollHint, {ScrollHintContainer} from '../components/ScrollHint';
 import {OnboardingStackParamList} from '../OnboardingStack';
+import {getTestIdProps} from "../../../utils/testing";
 
 type OnboardingStartScreenProps = StackScreenProps<
   OnboardingStackParamList,
@@ -194,6 +195,7 @@ const OnboardingStart: React.VFC<OnboardingStartScreenProps> = () => {
         '*Currently available in the USA. More countries coming soon.',
       ),
       img: () => OnboardingImages.card[themeType],
+      accessibilityId: 'onboarding-slide-1'
     },
     {
       title: t('Spend crypto at your favorite places'),
@@ -201,6 +203,7 @@ const OnboardingStart: React.VFC<OnboardingStartScreenProps> = () => {
         'Discover a curated list of places you can spend your crypto. Purchase, manage and spend store credits instantly.',
       ),
       img: () => OnboardingImages.spend[themeType],
+      accessibilityId: 'onboarding-slide-2'
     },
     {
       title: t('Keep your funds safe & secure'),
@@ -208,6 +211,7 @@ const OnboardingStart: React.VFC<OnboardingStartScreenProps> = () => {
         'Websites and exchanges get hacked. BitPay allows you to privately store, manage and use your crypto funds without having to trust a centralized bank or exchange.',
       ),
       img: () => OnboardingImages.wallet[themeType],
+      accessibilityId: 'onboarding-slide-3'
     },
     {
       title: t('Seamlessly buy & swap with a decentralized exchange'),
@@ -215,12 +219,13 @@ const OnboardingStart: React.VFC<OnboardingStartScreenProps> = () => {
         'Buy with a credit card or existing funds, then seamlessly swap coins at competitive rates without leaving the app.',
       ),
       img: () => OnboardingImages.swap[themeType],
+      accessibilityId: 'onboarding-slide-4'
     },
   ];
 
   return (
-    <OnboardingContainer>
-      <ScrollView scrollEnabled={scrollEnabledForSmallScreens}>
+      <OnboardingContainer {...getTestIdProps('component-onboarding-container')}>
+        <ScrollView scrollEnabled={scrollEnabledForSmallScreens} {...getTestIdProps('component-onboarding-scroll-view')}>
         <Carousel
           vertical={false}
           layout={'default'}
@@ -236,8 +241,9 @@ const OnboardingStart: React.VFC<OnboardingStartScreenProps> = () => {
           }}
           // @ts-ignore
           disableIntervalMomentum={true}
+          {...getTestIdProps('component-onboarding-carousel')}
         />
-        <View style={{height: scrollHintHeight}} />
+        <View style={{height: scrollHintHeight}} {...getTestIdProps('component-onboarding-view')} />
       </ScrollView>
 
       <ScrollHintContainer>

@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   transform: {
-    '^.+\\.svg$': 'jest-svg-transformer',
+    '^.+\\.svg$': 'jest-transform-stub',
     '^.+\\.jsx$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',
   },

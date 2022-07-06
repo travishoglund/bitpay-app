@@ -63,3 +63,32 @@ If you want to associate the app with a different intent prefix eg. `myapp://`:
   #### Android
     1. Open `android/app/src/main/AndroidManifest.xml`
     2. Locate `<intent-filter><data android:scheme="...">` and modify the value to your desired prefix (without colon and slashes) eg. `myapp`
+
+### Appium Testing
+To run our Appium tests, make sure your machine is setup properly using
+```
+npm run appium-doctor-ios
+npm run appium-doctor-android
+```
+
+Once your machine is ready run the following commands (in separate terminal windows).
+```
+npm run ios                 OR      npm run android
+npm run appium-server
+npm run appium-test-ios     OR      npm run appium-test-android
+```
+
+In order to target elements, it is good practice to have the `testID` prop for IOS and the `accessibilityLabel` prop for android.  A helper function `getTestIdProps` was created to help automated this:
+```
+<Text {...getTestIdProps('component-onboarding-container-title')}>Example</Text>
+```
+
+If you don’t have the file `./android/app/build/outputs/apk/debug/app-debug.apk` in your project, you will need to build the app by running `npm run android`
+
+#### Documentation links for writing tests
+```
+https://appium.io/docs/en/commands/element/find-elements/
+https://github.com/appium/appium/blob/master/docs/en/commands/interactions/touch/touch-perform.md
+```
+
+Note: Make sure when you run the app, you do not change anything with the state of the application running in the simulator.  If you do, some tests can fail.
